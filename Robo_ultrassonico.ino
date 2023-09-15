@@ -11,8 +11,8 @@
 #define in3  3         //pino in3 na porta digital 7
 #define in4  2         //pino in4 na porta digital 6
 #define buzzer 6
-int velocidadeMotorum = 179;
-int velocidadeMotordois = 160;
+int velocidadeMotorum = 130;
+int velocidadeMotordois = 130;
 
 
 
@@ -113,7 +113,7 @@ delay(100);                                       //aguarda um tempo
 void Frente()
 {
 Serial.println("Robô: Frente ");
-analogWrite(in1, velocidadeMotorum);                          //Configurar a ponte h 
+analogWrite(in1, velocidadeMotorum+12);                          //Configurar a ponte h 
 digitalWrite(in2, LOW);
 analogWrite(in3, velocidadeMotordois);
 digitalWrite(in4, LOW);
@@ -124,44 +124,55 @@ void ParaTras()
 {
 Serial.println("Robô: Ré ");
 digitalWrite(in1, LOW);                           //Configurar a ponte h 
-digitalWrite(in2, HIGH);
+analogWrite(in2, velocidadeMotorum);
 digitalWrite(in3, LOW);
-digitalWrite(in4, HIGH);
-delay(400);                                       //aguarda um tempo
+analogWrite(in4,velocidadeMotordois);
+delay(200);                                       //aguarda um tempo
             // Defina a velocidade do motor Dois                         
 }
 // Função que faz o robô virar à direita,
 void Vireadireita()
 {
 Serial.println("Robô: Direita ");
-digitalWrite(in1, velocidadeMotorum);                           //Configurar a ponte h 
-digitalWrite(in2, HIGH);
-digitalWrite(in3,velocidadeMotordois);
+analogWrite(in1, LOW);                           //Configurar a ponte h 
+digitalWrite(in2, velocidadeMotorum);
+analogWrite(in3,velocidadeMotordois);
 digitalWrite(in4, LOW);
-delay(400);                                       //aguarda um tempo
+delay(300);        
+digitalWrite(in1, LOW);                           //Configurar a ponte h 
+digitalWrite(in2, LOW);
+digitalWrite(in3, LOW);
+digitalWrite(in4, LOW);
+delay(100);                               //aguarda um tempo
             // Defina a velocidade do motor Dois                         
 }
 // Função que faz o robô virar à esquerda
 void VireaEsquerda()
 {
 Serial.println("Robô: Esquerda ");                
-digitalWrite(in1,velocidadeMotorum);                          //Configurar a ponte h 
+analogWrite(in1,velocidadeMotorum);                          //Configurar a ponte h 
 digitalWrite(in2, LOW);
 digitalWrite(in3, LOW);
-digitalWrite(in4, velocidadeMotordois);
-delay(300);                                       //aguarda um tempo
+analogWrite(in4, velocidadeMotordois);
+delay(300);   
+digitalWrite(in1, LOW);                           //Configurar a ponte h 
+digitalWrite(in2, LOW);
+digitalWrite(in3, LOW);
+digitalWrite(in4, LOW);
+delay(100);                                    //aguarda um tempo
             // Defina a velocidade do motor Dois                         
 }
 //Função para o robô virar para o outro lado
 void Retorne() {
   Serial.println("Robô: Girar ");
-  digitalWrite(in1, HIGH); // Configurar a ponte H 
+ analogWrite(in1,velocidadeMotorum); // Configurar a ponte H 
   digitalWrite(in2, LOW);
   digitalWrite(in3, LOW);
-  digitalWrite(in4, HIGH);
-  
-  
-  delay(700); // Aguarda um tempo após a parada para evitar movimentos indesejados
+ analogWrite(in4, velocidadeMotordois);
+  delay(500); // Aguarda um tempo após a parada para evitar movimentos indesejados
+  digitalWrite(in1, LOW);                           //Configurar a ponte h 
+digitalWrite(in2, LOW);
+digitalWrite(in3, LOW);
+digitalWrite(in4, LOW);
+delay(100);
 }
-//Fim
-//Versão do Software: 1.0 SR 2 SeuRobo.com.br //não apague essa linha, para futuras consultas
